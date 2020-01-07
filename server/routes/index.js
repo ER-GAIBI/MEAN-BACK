@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../db');
-
+const fs = require('fs');
 const router = express.Router();
 
 router.get('/marketServerUk', async (req, res, next) => {
@@ -32,6 +32,18 @@ router.get('/businessServiceUk', async (req, res, next) => {
         console.log('uk');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForUk();
+        res.json(results);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+router.get('/technicalServiceForUk', async (req, res, next) => {
+    try {
+        console.log('uk');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        let results = await db.technicalServiceForUk();
         res.json(results);
     } catch (e) {
         console.log(e);
@@ -327,4 +339,12 @@ router.get('/businessServiceDeNw', async (req, res, next) => {
     }
 });
 
+router.get('/pdf', function (req, res) {
+   const filePath =  '/files/test.pdf';
+   fs.readFile(__dirname + filePath, function (err, data) {
+       res.setHeader('Access-Control-Allow-Origin', '*');
+       res.contentType("application/pdf");
+       res.send(data);
+   })
+});
 module.exports = router;

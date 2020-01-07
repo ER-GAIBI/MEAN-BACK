@@ -42,6 +42,17 @@ data.bussinessServiceForUk = () => {
     });
 };
 
+data.technicalServiceForUk = () => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT distinct Technical_Service FROM uk_dd.All_Requirements', (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
 data.allMarketServersForEs = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
