@@ -9,6 +9,8 @@ const pool = mysql.createPool({
 
 let data = {};
 
+
+// UK queries
 data.allMarketServersForUk = () => {
   return new Promise((resolve, reject) => {
      pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
@@ -53,6 +55,43 @@ data.technicalServiceForUk = () => {
     });
 };
 
+data.selectedTechnicalServiceApplicationServersForUk = (selectedElement) => {
+    return new Promise((resolve, reject) => {
+        const sql = "SELECT * FROM uk_dd.Servers where Technical_Service = '" + selectedElement + "'";
+        console.log(sql);
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.selectedTechnicalServiceApplicationDatabasesForUk = (selectedElement) => {
+    return new Promise((resolve, reject) => {
+        const sql = "SELECT * FROM uk_dd.DBs where Technical_Service = '" + selectedElement + "'";
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.selectedTechnicalServiceApplicationRequirementForUk = () => {
+    return new Promise((resolve, reject) => {
+        pool.query("SELECT distinct Requirement_Monitor_Type from uk_dd.all_requirements where Technical_Service = 'Ciena WaveWatcher'", (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+// ES queries
 data.allMarketServersForEs = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
@@ -86,6 +125,7 @@ data.bussinessServiceForEs = () => {
     });
 };
 
+// GR queries
 data.allMarketServersForGr = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
@@ -119,6 +159,7 @@ data.bussinessServiceForGr = () => {
     });
 };
 
+// IE queries
 data.allMarketServersForIe = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
@@ -152,6 +193,7 @@ data.bussinessServiceForIe = () => {
     });
 };
 
+// IT queries
 data.allMarketServersForIt = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
@@ -185,6 +227,7 @@ data.bussinessServiceForIt = () => {
     });
 };
 
+// PT queries
 data.allMarketServersForPt = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
@@ -218,6 +261,7 @@ data.bussinessServiceForPt = () => {
     });
 };
 
+// QA queries
 data.allMarketServersForQa = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
@@ -251,6 +295,7 @@ data.bussinessServiceForQa = () => {
     });
 };
 
+// DE BY queries
 data.allMarketServersForDeBy = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {
@@ -284,6 +329,7 @@ data.bussinessServiceForDeBy = () => {
     });
 };
 
+// DE NW queries
 data.allMarketServersForDeNw = () => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM uk_dd.Servers', (err, results) => {

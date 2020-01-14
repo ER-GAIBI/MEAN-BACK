@@ -3,9 +3,9 @@ const db = require('../db');
 const fs = require('fs');
 const router = express.Router();
 
+// UK controller
 router.get('/marketServerUk', async (req, res, next) => {
     try {
-        console.log('uk');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForUk();
         await res.json(results);
@@ -17,7 +17,6 @@ router.get('/marketServerUk', async (req, res, next) => {
 
 router.get('/marketDatabaseUk', async (req, res, next) => {
     try {
-        console.log('uk');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForUk();
         res.json(results);
@@ -29,7 +28,6 @@ router.get('/marketDatabaseUk', async (req, res, next) => {
 
 router.get('/businessServiceUk', async (req, res, next) => {
     try {
-        console.log('uk');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForUk();
         res.json(results);
@@ -41,7 +39,6 @@ router.get('/businessServiceUk', async (req, res, next) => {
 
 router.get('/technicalServiceForUk', async (req, res, next) => {
     try {
-        console.log('uk');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.technicalServiceForUk();
         res.json(results);
@@ -51,9 +48,42 @@ router.get('/technicalServiceForUk', async (req, res, next) => {
     }
 });
 
+router.post('/selectedTechnicalServerApplicationServersUk',  async (req, res, next) => {
+    try {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        let results = await db.selectedTechnicalServiceApplicationServersForUk(req.query.selectedElement);
+        await res.json(results);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+router.post('/selectedTechnicalServerApplicationDatabasesUk', async (req, res, next) => {
+    try {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        let results = await db.selectedTechnicalServiceApplicationDatabasesForUk(req.query.selectedElement);
+        await res.json(results);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+router.get('/selectedTechnicalServerApplicationRequirementUk', async (req, res, next) => {
+    try {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        let results = await db.selectedTechnicalServiceApplicationRequirementForUk();
+        await res.json(results);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+// ES controller
 router.get('/marketServerEs', async (req, res, next) => {
     try {
-        console.log('es');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForEs();
         await res.json(results);
@@ -65,7 +95,6 @@ router.get('/marketServerEs', async (req, res, next) => {
 
 router.get('/marketDatabaseEs', async (req, res, next) => {
     try {
-        console.log('es');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForEs();
         res.json(results);
@@ -77,7 +106,6 @@ router.get('/marketDatabaseEs', async (req, res, next) => {
 
 router.get('/businessServiceEs', async (req, res, next) => {
     try {
-        console.log('es');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForEs();
         res.json(results);
@@ -87,9 +115,9 @@ router.get('/businessServiceEs', async (req, res, next) => {
     }
 });
 
+// GR controller
 router.get('/marketServerGr', async (req, res, next) => {
     try {
-        console.log('gr');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForGr();
         await res.json(results);
@@ -101,7 +129,6 @@ router.get('/marketServerGr', async (req, res, next) => {
 
 router.get('/marketDatabaseGr', async (req, res, next) => {
     try {
-        console.log('gr');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForGr();
         res.json(results);
@@ -113,7 +140,6 @@ router.get('/marketDatabaseGr', async (req, res, next) => {
 
 router.get('/businessServiceGr', async (req, res, next) => {
     try {
-        console.log('gr');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForGr();
         res.json(results);
@@ -123,9 +149,9 @@ router.get('/businessServiceGr', async (req, res, next) => {
     }
 });
 
+// IE controller
 router.get('/marketServerIe', async (req, res, next) => {
     try {
-        console.log('ie');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForIe();
         await res.json(results);
@@ -137,7 +163,6 @@ router.get('/marketServerIe', async (req, res, next) => {
 
 router.get('/marketDatabaseIe', async (req, res, next) => {
     try {
-        console.log('ie');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForIe();
         res.json(results);
@@ -149,7 +174,6 @@ router.get('/marketDatabaseIe', async (req, res, next) => {
 
 router.get('/businessServiceIe', async (req, res, next) => {
     try {
-        console.log('ie');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForIe();
         res.json(results);
@@ -159,9 +183,9 @@ router.get('/businessServiceIe', async (req, res, next) => {
     }
 });
 
+// IT controller
 router.get('/marketServerIt', async (req, res, next) => {
     try {
-        console.log('it');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForIt();
         await res.json(results);
@@ -173,7 +197,6 @@ router.get('/marketServerIt', async (req, res, next) => {
 
 router.get('/marketDatabaseIt', async (req, res, next) => {
     try {
-        console.log('it');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForIt();
         res.json(results);
@@ -185,7 +208,6 @@ router.get('/marketDatabaseIt', async (req, res, next) => {
 
 router.get('/businessServiceIt', async (req, res, next) => {
     try {
-        console.log('it');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForIt();
         res.json(results);
@@ -195,9 +217,9 @@ router.get('/businessServiceIt', async (req, res, next) => {
     }
 });
 
+// PT controller
 router.get('/marketServerPt', async (req, res, next) => {
     try {
-        console.log('pt');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForPt();
         await res.json(results);
@@ -209,7 +231,6 @@ router.get('/marketServerPt', async (req, res, next) => {
 
 router.get('/marketDatabasePt', async (req, res, next) => {
     try {
-        console.log('pt');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForPt();
         res.json(results);
@@ -221,7 +242,6 @@ router.get('/marketDatabasePt', async (req, res, next) => {
 
 router.get('/businessServicePt', async (req, res, next) => {
     try {
-        console.log('pt');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForPt();
         res.json(results);
@@ -231,9 +251,9 @@ router.get('/businessServicePt', async (req, res, next) => {
     }
 });
 
+// QA controller
 router.get('/marketServerQa', async (req, res, next) => {
     try {
-        console.log('qa');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForQa();
         await res.json(results);
@@ -245,7 +265,6 @@ router.get('/marketServerQa', async (req, res, next) => {
 
 router.get('/marketDatabaseQa', async (req, res, next) => {
     try {
-        console.log('qa');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForQa();
         res.json(results);
@@ -257,7 +276,6 @@ router.get('/marketDatabaseQa', async (req, res, next) => {
 
 router.get('/businessServiceQa', async (req, res, next) => {
     try {
-        console.log('qa');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForQa();
         res.json(results);
@@ -267,9 +285,9 @@ router.get('/businessServiceQa', async (req, res, next) => {
     }
 });
 
+// DE BY controller
 router.get('/marketServerDeBy', async (req, res, next) => {
     try {
-        console.log('by');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForDeBy();
         await res.json(results);
@@ -281,7 +299,6 @@ router.get('/marketServerDeBy', async (req, res, next) => {
 
 router.get('/marketDatabaseDeBy', async (req, res, next) => {
     try {
-        console.log('by');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForDeBy();
         res.json(results);
@@ -293,7 +310,6 @@ router.get('/marketDatabaseDeBy', async (req, res, next) => {
 
 router.get('/businessServiceDeBy', async (req, res, next) => {
     try {
-        console.log('by');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForDeBy();
         res.json(results);
@@ -303,9 +319,9 @@ router.get('/businessServiceDeBy', async (req, res, next) => {
     }
 });
 
+// DE NW controller
 router.get('/marketServerDeNw', async (req, res, next) => {
     try {
-        console.log('deNw');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketServersForDeNw();
         await res.json(results);
@@ -317,7 +333,6 @@ router.get('/marketServerDeNw', async (req, res, next) => {
 
 router.get('/marketDatabaseDeNw', async (req, res, next) => {
     try {
-        console.log('deNw');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.allMarketDatabasesForDeNw();
         res.json(results);
@@ -329,7 +344,6 @@ router.get('/marketDatabaseDeNw', async (req, res, next) => {
 
 router.get('/businessServiceDeNw', async (req, res, next) => {
     try {
-        console.log('deNw');
         res.setHeader('Access-Control-Allow-Origin', '*');
         let results = await db.bussinessServiceForDeNw();
         res.json(results);
@@ -339,6 +353,7 @@ router.get('/businessServiceDeNw', async (req, res, next) => {
     }
 });
 
+// PDF controller
 router.get('/pdf', function (req, res) {
    const filePath =  '/files/test.pdf';
    fs.readFile(__dirname + filePath, function (err, data) {
