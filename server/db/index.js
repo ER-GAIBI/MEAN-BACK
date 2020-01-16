@@ -58,7 +58,6 @@ data.technicalServiceForUk = () => {
 data.selectedTechnicalServiceApplicationServersForUk = (selectedElement) => {
     return new Promise((resolve, reject) => {
         const sql = "SELECT * FROM uk_dd.Servers where Technical_Service = '" + selectedElement + "'";
-        console.log(sql);
         pool.query(sql, (err, results) => {
             if (err) {
                 return reject(err);
@@ -80,9 +79,22 @@ data.selectedTechnicalServiceApplicationDatabasesForUk = (selectedElement) => {
     });
 };
 
-data.selectedTechnicalServiceApplicationRequirementForUk = () => {
+data.selectedTechnicalServiceApplicationRequirementForUk = (selectedElement) => {
     return new Promise((resolve, reject) => {
-        pool.query("SELECT distinct Requirement_Monitor_Type from uk_dd.all_requirements where Technical_Service = 'Ciena WaveWatcher'", (err, results) => {
+        const sql = "SELECT distinct Requirement_Monitor_Type from uk_dd.all_requirements where Technical_Service = '" + selectedElement + "'";
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.selectedRequirementUk = (selectedTechnical, selectedRequirement) => {
+    return new Promise((resolve, reject) => {
+        const sql = "SELECT * from uk_dd.all_requirements where Technical_Service ='" + selectedTechnical + "' and  Requirement_Monitor_Type = '" + selectedRequirement + "'";
+        pool.query(sql, (err, results) => {
             if (err) {
                 return reject(err);
             }

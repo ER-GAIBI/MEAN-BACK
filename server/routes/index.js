@@ -70,10 +70,21 @@ router.post('/selectedTechnicalServerApplicationDatabasesUk', async (req, res, n
     }
 });
 
-router.get('/selectedTechnicalServerApplicationRequirementUk', async (req, res, next) => {
+router.post('/selectedTechnicalServerApplicationRequirementUk', async (req, res, next) => {
     try {
         res.setHeader('Access-Control-Allow-Origin', '*');
-        let results = await db.selectedTechnicalServiceApplicationRequirementForUk();
+        let results = await db.selectedTechnicalServiceApplicationRequirementForUk(req.query.selectedElement);
+        await res.json(results);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+
+router.post('/requirementUk', async (req, res, next) => {
+    try {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        let results = await db.selectedRequirementUk(req.query.selectedElement, req.query.selectedRequirement);
         await res.json(results);
     } catch (e) {
         console.log(e);
