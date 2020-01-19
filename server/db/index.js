@@ -58,6 +58,7 @@ data.technicalServiceForUk = () => {
 data.selectedTechnicalServiceApplicationServersForUk = (selectedElement) => {
     return new Promise((resolve, reject) => {
         const sql = "SELECT * FROM uk_dd.Servers where Technical_Service = '" + selectedElement + "'";
+        console.log(sql);
         pool.query(sql, (err, results) => {
             if (err) {
                 return reject(err);
@@ -94,6 +95,101 @@ data.selectedTechnicalServiceApplicationRequirementForUk = (selectedElement) => 
 data.selectedRequirementUk = (selectedTechnical, selectedRequirement) => {
     return new Promise((resolve, reject) => {
         const sql = "SELECT * from uk_dd.all_requirements where Technical_Service ='" + selectedTechnical + "' and  Requirement_Monitor_Type = '" + selectedRequirement + "'";
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.addRequirementToUk = (element1, element2, element3, element4,
+                           element5, element6, element7,element8,
+                           element9, element10, element11, element12,
+                           element13, element14, element15, element16,
+                           element17, element18, element19, element20, element21, element22) => {
+    return new Promise((resolve, reject) => {
+        const sql = "INSERT INTO uk_dd.all_requirements (Req_ID, Technical_Service, Component, Requirement, Details, Type, Business_Service_Group_X, Tool, Propagation_rule" +
+            ", Event_no_Event, Access_Status, KPIs, Requirement_Monitor_Type, Discovery_Status, Firewall_Status, Monitor_Implementation_Status" +
+            ", QA_Status, Testing_Status, Blocking_Reasons, Comments, Demand_ID) VALUES ('"
+            + element1 + "','" + element2 + "','" + element3 + "','" +  element4 + "','" + element5 + "','" + element6 + "','" + element7 + "','" + element8 + "','"
+            + element9 + "','" + element10 + "','" + element11 + "','" + element12 + "','"  + element13 + "','" + element14 + "','" + element15 + "','" + element16 +
+            "','"  + element18 + "','" + element19 + "','" + element20 + "','" + element21 + "','" + element22 + "')";
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.addMarketServersForUk = (element1, element2, element3, element4,
+                              element5, element6, element7,element8,
+                              element9, element10, element11, element12,
+                              element13, element14, element15, element16) => {
+
+    return new Promise((resolve, reject) => {
+        const sql = "INSERT INTO uk_dd.Servers (Technical_Service_ID, Technical_Service, Component, Server_Name, Propagation_Rule, Type, IP_address, IP_address_2, OS" +
+            ", Location, System_Owner, 1st_Level_Support, 2nd_Level_Support, 3rd_Level_Support) VALUES ('"
+            + element1 + "','" + element2 + "','" + element3 + "','" +  element4 + "','" + element5 + "','" + element6 + "','" + element8 + "','"
+            + element9 + "','" + element10 + "','" +  element12 + "','"  + element13 + "','" + element14 + "','" + element15 + "','" + element16 + "')";
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.addDatabasesForUk = (element1, element2, element3, element4,
+                              element5, element6, element7,element8,
+                              element9, element10, element11, element12,
+                              element13, element14) => {
+
+    return new Promise((resolve, reject) => {
+        const sql = "INSERT INTO uk_dd.DBs (Technical_Service_ID, Technical_Service, Server_Name, Propagation_Rule, Type, user, IP_address, Port, OS" +
+            ", System_Owner, 1st_Level_Support, 2nd_Level_Support, 3rd_Level_Support) VALUES ('"
+            + element1 + "','" + element2 + "','" + element3 + "','" +  element4 + "','" + element5 + "','" + element7 + "','" + element8 + "','"
+            + element9 + "','" + element10 + "','" +  element11 + "','" + element12 + "','" + element13 + "','" + element14 + "')";
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.deleteMarketServersForUk = (element) => {
+    return new Promise((resolve, reject) => {
+        const sql = "DELETE FROM uk_dd.Servers WHERE Technical_Service_ID = '" + element + "'";
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.deleteDatabaseForUk = (element) => {
+    return new Promise((resolve, reject) => {
+        const sql = "DELETE FROM uk_dd.DBs WHERE Technical_Service_ID = '" + element + "'";
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+data.deleteRequirementForUk = (element) => {
+    return new Promise((resolve, reject) => {
+        const sql = "DELETE FROM uk_dd.all_requirements where Req_ID = '" + element + "'";
         pool.query(sql, (err, results) => {
             if (err) {
                 return reject(err);
